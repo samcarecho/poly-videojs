@@ -1,0 +1,376 @@
+<div hidden><!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<style shim-shadowdom="">html /deep/ [layout][horizontal],html /deep/ [layout][vertical]{display:-ms-flexbox;display:-webkit-flex;display:flex}html /deep/ [layout][horizontal][inline],html /deep/ [layout][vertical][inline]{display:-ms-inline-flexbox;display:-webkit-inline-flex;display:inline-flex}html /deep/ [layout][horizontal]{-ms-flex-direction:row;-webkit-flex-direction:row;flex-direction:row}html /deep/ [layout][horizontal][reverse]{-ms-flex-direction:row-reverse;-webkit-flex-direction:row-reverse;flex-direction:row-reverse}html /deep/ [layout][vertical]{-ms-flex-direction:column;-webkit-flex-direction:column;flex-direction:column}html /deep/ [layout][vertical][reverse]{-ms-flex-direction:column-reverse;-webkit-flex-direction:column-reverse;flex-direction:column-reverse}html /deep/ [layout][wrap]{-ms-flex-wrap:wrap;-webkit-flex-wrap:wrap;flex-wrap:wrap}html /deep/ [layout][wrap-reverse]{-ms-flex-wrap:wrap-reverse;-webkit-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}html /deep/ [flex]{-ms-flex:1 1 0;-webkit-flex:1;flex:1;-webkit-flex-basis:0;flex-basis:0}html /deep/ [vertical][layout]>[flex][auto-vertical],html /deep/ [vertical][layout]::shadow [flex][auto-vertical]{-ms-flex:1 1 auto;-webkit-flex-basis:auto;flex-basis:auto}html /deep/ [flex][auto]{-ms-flex:1 1 auto;-webkit-flex-basis:auto;flex-basis:auto}html /deep/ [flex][none]{-ms-flex:none;-webkit-flex:none;flex:none}html /deep/ [flex][one]{-ms-flex:1;-webkit-flex:1;flex:1}html /deep/ [flex][two]{-ms-flex:2;-webkit-flex:2;flex:2}html /deep/ [flex][three]{-ms-flex:3;-webkit-flex:3;flex:3}html /deep/ [flex][four]{-ms-flex:4;-webkit-flex:4;flex:4}html /deep/ [flex][five]{-ms-flex:5;-webkit-flex:5;flex:5}html /deep/ [flex][six]{-ms-flex:6;-webkit-flex:6;flex:6}html /deep/ [flex][seven]{-ms-flex:7;-webkit-flex:7;flex:7}html /deep/ [flex][eight]{-ms-flex:8;-webkit-flex:8;flex:8}html /deep/ [flex][nine]{-ms-flex:9;-webkit-flex:9;flex:9}html /deep/ [flex][ten]{-ms-flex:10;-webkit-flex:10;flex:10}html /deep/ [flex][eleven]{-ms-flex:11;-webkit-flex:11;flex:11}html /deep/ [flex][twelve]{-ms-flex:12;-webkit-flex:12;flex:12}html /deep/ [layout][start]{-ms-flex-align:start;-webkit-align-items:flex-start;align-items:flex-start}html /deep/ [layout][center],html /deep/ [layout][center-center]{-ms-flex-align:center;-webkit-align-items:center;align-items:center}html /deep/ [layout][end]{-ms-flex-align:end;-webkit-align-items:flex-end;align-items:flex-end}html /deep/ [layout][start-justified]{-ms-flex-pack:start;-webkit-justify-content:flex-start;justify-content:flex-start}html /deep/ [layout][center-justified],html /deep/ [layout][center-center]{-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center}html /deep/ [layout][end-justified]{-ms-flex-pack:end;-webkit-justify-content:flex-end;justify-content:flex-end}html /deep/ [layout][around-justified]{-ms-flex-pack:distribute;-webkit-justify-content:space-around;justify-content:space-around}html /deep/ [layout][justified]{-ms-flex-pack:justify;-webkit-justify-content:space-between;justify-content:space-between}html /deep/ [self-start]{-ms-align-self:flex-start;-webkit-align-self:flex-start;align-self:flex-start}html /deep/ [self-center]{-ms-align-self:center;-webkit-align-self:center;align-self:center}html /deep/ [self-end]{-ms-align-self:flex-end;-webkit-align-self:flex-end;align-self:flex-end}html /deep/ [self-stretch]{-ms-align-self:stretch;-webkit-align-self:stretch;align-self:stretch}html /deep/ [block]{display:block}html /deep/ [hidden]{display:none!important}html /deep/ [relative]{position:relative}html /deep/ [fit]{position:absolute;top:0;right:0;bottom:0;left:0}body[fullbleed]{margin:0;height:100vh}html /deep/ [segment],html /deep/ segment{display:block;position:relative;-webkit-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;margin:1em .5em;padding:1em;background-color:#fff;-webkit-box-shadow:0 0 0 1px rgba(0,0,0,.1);box-shadow:0 0 0 1px rgba(0,0,0,.1);border-radius:5px}</style>
+
+<script src="../bower_components/polymer/polymer.js"></script>
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+@group Paper Elements
+
+Material Design: <a href="http://www.google.com/design/spec/components/buttons.html">Buttons</a>
+
+`paper-button` is a button. When the user touches the button, a ripple effect emanates
+from the point of contact. It may be flat or raised. A raised button is styled with a
+shadow.
+
+Example:
+
+    <paper-button>flat button</paper-button>
+    <paper-button raised>raised button</paper-button>
+    <paper-button noink>No ripple effect</paper-button>
+
+You may use custom DOM in the button body to create a variety of buttons. For example, to
+create a button with an icon and some text:
+
+    <paper-button>
+      <core-icon icon="favorite"></core-icon>
+      custom button content
+    </paper-button>
+
+## Styling
+
+Style the button with CSS as you would a normal DOM element.
+
+    /* make #my-button green with yellow text */
+    #my-button {
+        background: green;
+        color: yellow;
+    }
+
+By default, the ripple is the same color as the foreground at 25% opacity. You may
+customize the color using this selector:
+
+    /* make #my-button use a blue ripple instead of foreground color */
+    #my-button::shadow #ripple {
+      color: blue;
+    }
+
+The opacity of the ripple is not customizable via CSS.
+
+@element paper-button
+@extends paper-button-base
+@status unstable
+-->
+
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+
+`paper-shadow` is a container that renders two shadows on top of each other to
+create the effect of a lifted piece of paper.
+
+Example:
+
+    <paper-shadow z="1">
+      ... card content ...
+    </paper-shadow>
+
+@group Paper Elements
+@class paper-shadow
+-->
+
+
+
+<style shim-shadowdom="">html /deep/ paper-shadow,html /deep/ paper-animated-shadow{display:block;position:relative}html /deep/ paper-shadow::shadow #shadow-bottom,html /deep/ paper-shadow::shadow #shadow-top{border-radius:inherit;pointer-events:none}html /deep/ paper-shadow::shadow #shadow-bottom[animated],html /deep/ paper-shadow::shadow #shadow-top[animated]{transition:box-shadow .28s cubic-bezier(0.4,0,.2,1)}html /deep/ .paper-shadow-top-z-1{box-shadow:none}html /deep/ .paper-shadow-bottom-z-1{box-shadow:0 1px 4px 0 rgba(0,0,0,.37)}html /deep/ .paper-shadow-top-z-2{box-shadow:0 2px 2px 0 rgba(0,0,0,.2)}html /deep/ .paper-shadow-bottom-z-2{box-shadow:0 6px 10px 0 rgba(0,0,0,.3)}html /deep/ .paper-shadow-top-z-3{box-shadow:0 11px 7px 0 rgba(0,0,0,.19)}html /deep/ .paper-shadow-bottom-z-3{box-shadow:0 13px 25px 0 rgba(0,0,0,.3)}html /deep/ .paper-shadow-top-z-4{box-shadow:0 14px 12px 0 rgba(0,0,0,.17)}html /deep/ .paper-shadow-bottom-z-4{box-shadow:0 20px 40px 0 rgba(0,0,0,.3)}html /deep/ .paper-shadow-top-z-5{box-shadow:0 17px 17px 0 rgba(0,0,0,.15)}html /deep/ .paper-shadow-bottom-z-5{box-shadow:0 27px 55px 0 rgba(0,0,0,.3)}</style>
+
+<polymer-element name="paper-shadow" assetpath="../bower_components/paper-shadow/">
+
+<template>
+
+  <div id="shadow-bottom" fit="" animated?="[[animated]]" class="paper-shadow-bottom-z-[[z]]"></div>
+  <div id="shadow-top" fit="" animated?="[[animated]]" class="paper-shadow-top-z-[[z]]"></div>
+
+  <content></content>
+
+</template>
+
+<script>Polymer("paper-shadow",{publish:{z:1,animated:false},setZ:function(newZ){if(this.z!==newZ){this.$["shadow-bottom"].classList.remove("paper-shadow-bottom-z-"+this.z);this.$["shadow-bottom"].classList.add("paper-shadow-bottom-z-"+newZ);this.$["shadow-top"].classList.remove("paper-shadow-top-z-"+this.z);this.$["shadow-top"].classList.add("paper-shadow-top-z-"+newZ);this.z=newZ}}});</script>
+</polymer-element>
+
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+`core-a11y-keys` provides a normalized interface for processing keyboard commands that pertain to [WAI-ARIA best
+practices](http://www.w3.org/TR/wai-aria-practices/#kbd_general_binding). The element takes care of browser differences
+with respect to Keyboard events and uses an expressive syntax to filter key presses.
+
+Use the `keys` attribute to express what combination of keys will trigger the event to fire.
+
+Use the `target` attribute to set up event handlers on a specific node.
+The `keys-pressed` event will fire when one of the key combinations set with the `keys` attribute is pressed.
+
+Example:
+
+This element will call `arrowHandler` on all arrow keys:
+
+    <core-a11y-keys target="{{}}" keys="up down left right" on-keys-pressed="{{arrowHandler}}"></core-a11y-keys>
+
+Keys Syntax:
+
+The `keys` attribute can accepts a space seprated, `+` concatenated set of modifier keys and some common keyboard keys.
+
+The common keys are `a-z`, `0-9` (top row and number pad), `*` (shift 8 and number pad), `F1-F12`, `Page Up`, `Page
+Down`, `Left Arrow`, `Right Arrow`, `Down Arrow`, `Up Arrow`, `Home`, `End`, `Escape`, `Space`, `Tab`, and `Enter` keys.
+
+The modifier keys are `Shift`, `Control`, and `Alt`.
+
+All keys are expected to be lowercase and shortened:
+`Left Arrow` is `left`, `Page Down` is `pagedown`, `Control` is `ctrl`, `F1` is `f1`, `Escape` is `esc` etc.
+
+Keys Syntax Example:
+
+Given the `keys` attribute value "ctrl+shift+f7 up pagedown esc space alt+m", the `<core-a11y-keys>` element will send
+the `keys-pressed` event if any of the follow key combos are pressed: Control and Shift and F7 keys, Up Arrow key, Page
+Down key, Escape key, Space key, Alt and M key.
+
+Slider Example:
+
+The following is an example of the set of keys that fulfil the WAI-ARIA "slider" role [best
+practices](http://www.w3.org/TR/wai-aria-practices/#slider):
+
+    <core-a11y-keys target="{{}}" keys="left pagedown down" on-keys-pressed="{{decrement}}"></core-a11y-keys>
+    <core-a11y-keys target="{{}}" keys="right pageup up" on-keys-pressed="{{increment}}"></core-a11y-keys>
+    <core-a11y-keys target="{{}}" keys="home" on-keys-pressed="{{setMin}}"></core-a11y-keys>
+    <core-a11y-keys target="{{}}" keys="end" on-keys-pressed="{{setMax}}"></core-a11y-keys>
+
+The `increment` function will move the slider a set amount toward the maximum value.
+The `decrement` function will move the slider a set amount toward the minimum value.
+The `setMin` function will move the slider to the minimum value.
+The `setMax` function will move the slider to the maximum value.
+
+Keys Syntax Grammar:
+
+[EBNF](http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form) Grammar of the `keys` attribute.
+
+    modifier = "shift" | "ctrl" | "alt";
+    ascii = ? /[a-z0-9]/ ? ;
+    fnkey = ? f1 through f12 ? ;
+    arrow = "up" | "down" | "left" | "right" ;
+    key = "tab" | "esc" | "space" | "*" | "pageup" | "pagedown" | "home" | "end" | arrow | ascii | fnkey ;
+    keycombo = { modifier, "+" }, key ;
+    keys = keycombo, { " ", keycombo } ;
+
+@group Core Elements
+@element core-a11y-keys
+@homepage github.io
+-->
+
+
+
+<style shim-shadowdom="">html /deep/ core-a11y-keys{display:none}</style>
+
+<polymer-element name="core-a11y-keys" assetpath="../bower_components/core-a11y-keys/">
+<script>(function(){var KEY_IDENTIFIER={"U+0009":"tab","U+001B":"esc","U+0020":"space","U+002A":"*","U+0030":"0","U+0031":"1","U+0032":"2","U+0033":"3","U+0034":"4","U+0035":"5","U+0036":"6","U+0037":"7","U+0038":"8","U+0039":"9","U+0041":"a","U+0042":"b","U+0043":"c","U+0044":"d","U+0045":"e","U+0046":"f","U+0047":"g","U+0048":"h","U+0049":"i","U+004A":"j","U+004B":"k","U+004C":"l","U+004D":"m","U+004E":"n","U+004F":"o","U+0050":"p","U+0051":"q","U+0052":"r","U+0053":"s","U+0054":"t","U+0055":"u","U+0056":"v","U+0057":"w","U+0058":"x","U+0059":"y","U+005A":"z","U+007F":"del"};var KEY_CODE={9:"tab",13:"enter",27:"esc",33:"pageup",34:"pagedown",35:"end",36:"home",32:"space",37:"left",38:"up",39:"right",40:"down",46:"del",106:"*"};var KEY_CHAR=/[a-z0-9*]/;function transformKey(key){var validKey="";if(key){var lKey=key.toLowerCase();if(lKey.length==1){if(KEY_CHAR.test(lKey)){validKey=lKey}}else if(lKey=="multiply"){validKey="*"}else{validKey=lKey}}return validKey}var IDENT_CHAR=/U\+/;function transformKeyIdentifier(keyIdent){var validKey="";if(keyIdent){if(IDENT_CHAR.test(keyIdent)){validKey=KEY_IDENTIFIER[keyIdent]}else{validKey=keyIdent.toLowerCase()}}return validKey}function transformKeyCode(keyCode){var validKey="";if(Number(keyCode)){if(keyCode>=65&&keyCode<=90){validKey=String.fromCharCode(32+keyCode)}else if(keyCode>=112&&keyCode<=123){validKey="f"+(keyCode-112)}else if(keyCode>=48&&keyCode<=57){validKey=String(48-keyCode)}else if(keyCode>=96&&keyCode<=105){validKey=String(96-keyCode)}else{validKey=KEY_CODE[keyCode]}}return validKey}function keyboardEventToKey(ev){var normalizedKey=transformKey(ev.key)||transformKeyIdentifier(ev.keyIdentifier)||transformKeyCode(ev.keyCode)||transformKey(ev.detail.key)||"";return{shift:ev.shiftKey,ctrl:ev.ctrlKey,meta:ev.metaKey,alt:ev.altKey,key:normalizedKey}}function stringToKey(keyCombo){var keys=keyCombo.split("+");var keyObj=Object.create(null);keys.forEach(function(key){if(key=="shift"){keyObj.shift=true}else if(key=="ctrl"){keyObj.ctrl=true}else if(key=="alt"){keyObj.alt=true}else{keyObj.key=key}});return keyObj}function keyMatches(a,b){return Boolean(a.alt)==Boolean(b.alt)&&Boolean(a.ctrl)==Boolean(b.ctrl)&&Boolean(a.shift)==Boolean(b.shift)&&a.key===b.key}function processKeys(ev){var current=keyboardEventToKey(ev);for(var i=0,dk;i<this._desiredKeys.length;i++){dk=this._desiredKeys[i];if(keyMatches(dk,current)){ev.preventDefault();ev.stopPropagation();this.fire("keys-pressed",current,this,false);break}}}function listen(node,handler){if(node&&node.addEventListener){node.addEventListener("keydown",handler)}}function unlisten(node,handler){if(node&&node.removeEventListener){node.removeEventListener("keydown",handler)}}Polymer("core-a11y-keys",{created:function(){this._keyHandler=processKeys.bind(this)},attached:function(){if(!this.target){this.target=this.parentNode}listen(this.target,this._keyHandler)},detached:function(){unlisten(this.target,this._keyHandler)},publish:{keys:"",target:null},keysChanged:function(){var normalized=this.keys.replace("*","* shift+*");this._desiredKeys=normalized.toLowerCase().split(" ").map(stringToKey)},targetChanged:function(oldTarget){unlisten(oldTarget,this._keyHandler);listen(this.target,this._keyHandler)}})})();</script>
+</polymer-element>
+
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+@group Paper Elements
+
+`paper-button-base` is the base class for button-like elements with ripple and optional shadow.
+
+@element paper-button-base
+@mixins Polymer.CoreFocusable https://github.com/polymer/core-focusable
+@status unstable
+-->
+
+
+
+
+<script src="../bower_components/core-focusable/polymer-mixin.js"></script>
+<script src="../bower_components/core-focusable/core-focusable.js"></script>
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+`paper-ripple` provides a visual effect that other paper elements can
+use to simulate a rippling effect emanating from the point of contact.  The
+effect can be visualized as a concentric circle with motion.
+
+Example:
+
+    <paper-ripple></paper-ripple>
+
+`paper-ripple` listens to "down" and "up" events so it would display ripple
+effect when touches on it.  You can also defeat the default behavior and
+manually route the down and up actions to the ripple element.  Note that it is
+important if you call downAction() you will have to make sure to call upAction()
+so that `paper-ripple` would end the animation loop.
+
+Example:
+
+    <paper-ripple id="ripple" style="pointer-events: none;"></paper-ripple>
+    ...
+    downAction: function(e) {
+      this.$.ripple.downAction({x: e.x, y: e.y});
+    },
+    upAction: function(e) {
+      this.$.ripple.upAction();
+    }
+
+Styling ripple effect:
+
+  Use CSS color property to style the ripple:
+
+    paper-ripple {
+      color: #4285f4;
+    }
+
+  Note that CSS color property is inherited so it is not required to set it on
+  the `paper-ripple` element directly.
+
+By default, the ripple is centered on the point of contact.  Apply `recenteringTouch` 
+class to have the ripple grow toward the center of its container.
+
+    <paper-ripple class="recenteringTouch"></paper-ripple>
+
+Apply `circle` class to make the rippling effect within a circle.
+
+    <paper-ripple class="circle"></paper-ripple>
+
+@group Paper Elements
+@element paper-ripple
+@homepage github.io
+-->
+
+<!--
+Fired when the animation finishes. This is useful if you want to wait until the ripple
+animation finishes to perform some action.
+
+@event core-transitionend
+@param {Object} detail
+@param {Object} detail.node The animated node
+-->
+
+
+
+<polymer-element name="paper-ripple" attributes="initialOpacity opacityDecayVelocity" assetpath="../bower_components/paper-ripple/">
+<template>
+
+  <style>:host{display:block;position:relative;border-radius:inherit;overflow:hidden}:host-context([noink]){pointer-events:none}#bg,#waves,.wave-container,.wave{pointer-events:none;position:absolute;top:0;left:0;width:100%;height:100%}#bg,.wave{opacity:0}#waves,.wave{overflow:hidden}.wave-container,.wave{border-radius:50%}:host(.circle) #bg,:host(.circle) #waves{border-radius:50%}:host(.circle) .wave-container{overflow:hidden}</style>
+
+  <div id="bg"></div>
+  <div id="waves">
+  </div>
+
+</template>
+<script>(function(){var waveMaxRadius=150;function waveRadiusFn(touchDownMs,touchUpMs,anim){var touchDown=touchDownMs/1e3;var touchUp=touchUpMs/1e3;var totalElapsed=touchDown+touchUp;var ww=anim.width,hh=anim.height;var waveRadius=Math.min(Math.sqrt(ww*ww+hh*hh),waveMaxRadius)*1.1+5;var duration=1.1-.2*(waveRadius/waveMaxRadius);var tt=totalElapsed/duration;var size=waveRadius*(1-Math.pow(80,-tt));return Math.abs(size)}function waveOpacityFn(td,tu,anim){var touchDown=td/1e3;var touchUp=tu/1e3;var totalElapsed=touchDown+touchUp;if(tu<=0){return anim.initialOpacity}return Math.max(0,anim.initialOpacity-touchUp*anim.opacityDecayVelocity)}function waveOuterOpacityFn(td,tu,anim){var touchDown=td/1e3;var touchUp=tu/1e3;var outerOpacity=touchDown*.3;var waveOpacity=waveOpacityFn(td,tu,anim);return Math.max(0,Math.min(outerOpacity,waveOpacity))}function waveDidFinish(wave,radius,anim){var waveOpacity=waveOpacityFn(wave.tDown,wave.tUp,anim);return waveOpacity<.01&&radius>=Math.min(wave.maxRadius,waveMaxRadius)}function waveAtMaximum(wave,radius,anim){var waveOpacity=waveOpacityFn(wave.tDown,wave.tUp,anim);return waveOpacity>=anim.initialOpacity&&radius>=Math.min(wave.maxRadius,waveMaxRadius)}function drawRipple(ctx,x,y,radius,innerAlpha,outerAlpha){if(outerAlpha!==undefined){ctx.bg.style.opacity=outerAlpha}ctx.wave.style.opacity=innerAlpha;var s=radius/(ctx.containerSize/2);var dx=x-ctx.containerWidth/2;var dy=y-ctx.containerHeight/2;ctx.wc.style.webkitTransform="translate3d("+dx+"px,"+dy+"px,0)";ctx.wc.style.transform="translate3d("+dx+"px,"+dy+"px,0)";ctx.wave.style.webkitTransform="scale("+s+","+s+")";ctx.wave.style.transform="scale3d("+s+","+s+",1)"}function createWave(elem){var elementStyle=window.getComputedStyle(elem);var fgColor=elementStyle.color;var inner=document.createElement("div");inner.style.backgroundColor=fgColor;inner.classList.add("wave");var outer=document.createElement("div");outer.classList.add("wave-container");outer.appendChild(inner);var container=elem.$.waves;container.appendChild(outer);elem.$.bg.style.backgroundColor=fgColor;var wave={bg:elem.$.bg,wc:outer,wave:inner,waveColor:fgColor,maxRadius:0,isMouseDown:false,mouseDownStart:0,mouseUpStart:0,tDown:0,tUp:0};return wave}function removeWaveFromScope(scope,wave){if(scope.waves){var pos=scope.waves.indexOf(wave);scope.waves.splice(pos,1);wave.wc.remove()}}var pow=Math.pow;var now=Date.now;if(window.performance&&performance.now){now=performance.now.bind(performance)}function cssColorWithAlpha(cssColor,alpha){var parts=cssColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);if(typeof alpha=="undefined"){alpha=1}if(!parts){return"rgba(255, 255, 255, "+alpha+")"}return"rgba("+parts[1]+", "+parts[2]+", "+parts[3]+", "+alpha+")"}function dist(p1,p2){return Math.sqrt(pow(p1.x-p2.x,2)+pow(p1.y-p2.y,2))}function distanceFromPointToFurthestCorner(point,size){var tl_d=dist(point,{x:0,y:0});var tr_d=dist(point,{x:size.w,y:0});var bl_d=dist(point,{x:0,y:size.h});var br_d=dist(point,{x:size.w,y:size.h});return Math.max(tl_d,tr_d,bl_d,br_d)}Polymer("paper-ripple",{initialOpacity:.25,opacityDecayVelocity:.8,backgroundFill:true,pixelDensity:2,eventDelegates:{down:"downAction",up:"upAction"},ready:function(){this.waves=[]},downAction:function(e){var wave=createWave(this);this.cancelled=false;wave.isMouseDown=true;wave.tDown=0;wave.tUp=0;wave.mouseUpStart=0;wave.mouseDownStart=now();var rect=this.getBoundingClientRect();var width=rect.width;var height=rect.height;var touchX=e.x-rect.left;var touchY=e.y-rect.top;wave.startPosition={x:touchX,y:touchY};if(this.classList.contains("recenteringTouch")){wave.endPosition={x:width/2,y:height/2};wave.slideDistance=dist(wave.startPosition,wave.endPosition)}wave.containerSize=Math.max(width,height);wave.containerWidth=width;wave.containerHeight=height;wave.maxRadius=distanceFromPointToFurthestCorner(wave.startPosition,{w:width,h:height});wave.wc.style.top=(wave.containerHeight-wave.containerSize)/2+"px";wave.wc.style.left=(wave.containerWidth-wave.containerSize)/2+"px";wave.wc.style.width=wave.containerSize+"px";wave.wc.style.height=wave.containerSize+"px";this.waves.push(wave);if(!this._loop){this._loop=this.animate.bind(this,{width:width,height:height});requestAnimationFrame(this._loop)}},upAction:function(){for(var i=0;i<this.waves.length;i++){var wave=this.waves[i];if(wave.isMouseDown){wave.isMouseDown=false;wave.mouseUpStart=now();wave.mouseDownStart=0;wave.tUp=0;break}}this._loop&&requestAnimationFrame(this._loop)},cancel:function(){this.cancelled=true},animate:function(ctx){var shouldRenderNextFrame=false;var deleteTheseWaves=[];var longestTouchDownDuration=0;var longestTouchUpDuration=0;var lastWaveColor=null;var anim={initialOpacity:this.initialOpacity,opacityDecayVelocity:this.opacityDecayVelocity,height:ctx.height,width:ctx.width};for(var i=0;i<this.waves.length;i++){var wave=this.waves[i];if(wave.mouseDownStart>0){wave.tDown=now()-wave.mouseDownStart}if(wave.mouseUpStart>0){wave.tUp=now()-wave.mouseUpStart}var tUp=wave.tUp;var tDown=wave.tDown;longestTouchDownDuration=Math.max(longestTouchDownDuration,tDown);longestTouchUpDuration=Math.max(longestTouchUpDuration,tUp);var radius=waveRadiusFn(tDown,tUp,anim);var waveAlpha=waveOpacityFn(tDown,tUp,anim);var waveColor=cssColorWithAlpha(wave.waveColor,waveAlpha);lastWaveColor=wave.waveColor;var x=wave.startPosition.x;var y=wave.startPosition.y;if(wave.endPosition){var translateFraction=Math.min(1,radius/wave.containerSize*2/Math.sqrt(2));x+=translateFraction*(wave.endPosition.x-wave.startPosition.x);y+=translateFraction*(wave.endPosition.y-wave.startPosition.y)}var bgFillColor=null;if(this.backgroundFill){var bgFillAlpha=waveOuterOpacityFn(tDown,tUp,anim);bgFillColor=cssColorWithAlpha(wave.waveColor,bgFillAlpha)}drawRipple(wave,x,y,radius,waveAlpha,bgFillAlpha);var maximumWave=waveAtMaximum(wave,radius,anim);var waveDissipated=waveDidFinish(wave,radius,anim);var shouldKeepWave=!waveDissipated||maximumWave;var shouldRenderWaveAgain=wave.mouseUpStart?!waveDissipated:!maximumWave;shouldRenderNextFrame=shouldRenderNextFrame||shouldRenderWaveAgain;if(!shouldKeepWave||this.cancelled){deleteTheseWaves.push(wave)}}if(shouldRenderNextFrame){requestAnimationFrame(this._loop)}for(var i=0;i<deleteTheseWaves.length;++i){var wave=deleteTheseWaves[i];removeWaveFromScope(this,wave)}if(!this.waves.length&&this._loop){this.$.bg.style.backgroundColor=null;this._loop=null;this.fire("core-transitionend")}}})})();</script>
+</polymer-element>
+
+
+<polymer-element name="paper-button-base" tabindex="0" assetpath="../bower_components/paper-button/">
+
+<script>(function(){var p={eventDelegates:{down:"downAction",up:"upAction"},toggleBackground:function(){if(this.active){if(!this.$.bg){var bg=document.createElement("div");bg.setAttribute("id","bg");bg.setAttribute("fit","");bg.style.opacity=.25;this.$.bg=bg;this.shadowRoot.insertBefore(bg,this.shadowRoot.firstChild)}this.$.bg.style.backgroundColor=getComputedStyle(this).color}else{if(this.$.bg){this.$.bg.style.backgroundColor=""}}},activeChanged:function(){this.super();if(this.toggle&&(!this.lastEvent||this.matches(":host-context([noink])"))){this.toggleBackground()}},pressedChanged:function(){this.super();if(!this.lastEvent){return}if(this.$.ripple&&!this.hasAttribute("noink")){if(this.pressed){this.$.ripple.downAction(this.lastEvent)}else{this.$.ripple.upAction()}}this.adjustZ()},focusedChanged:function(){this.adjustZ()},disabledChanged:function(){this._disabledChanged();this.adjustZ()},recenteringTouchChanged:function(){if(this.$.ripple){this.$.ripple.classList.toggle("recenteringTouch",this.recenteringTouch)}},fillChanged:function(){if(this.$.ripple){this.$.ripple.classList.toggle("fill",this.fill)}},adjustZ:function(){if(!this.$.shadow){return}if(this.active){this.$.shadow.setZ(2)}else if(this.disabled){this.$.shadow.setZ(0)}else if(this.focused){this.$.shadow.setZ(3)}else{this.$.shadow.setZ(1)}},downAction:function(e){this._downAction();if(this.hasAttribute("noink")){return}this.lastEvent=e;if(!this.$.ripple){var ripple=document.createElement("paper-ripple");ripple.setAttribute("id","ripple");ripple.setAttribute("fit","");if(this.recenteringTouch){ripple.classList.add("recenteringTouch")}if(!this.fill){ripple.classList.add("circle")}this.$.ripple=ripple;this.shadowRoot.insertBefore(ripple,this.shadowRoot.firstChild)}},upAction:function(){this._upAction();if(this.toggle){this.toggleBackground();if(this.$.ripple){this.$.ripple.cancel()}}}};Polymer.mixin2(p,Polymer.CoreFocusable);Polymer(p)})();</script>
+</polymer-element>
+
+
+<polymer-element name="paper-button" extends="paper-button-base" attributes="raised recenteringTouch fill" role="button" assetpath="../bower_components/paper-button/">
+
+  <template>
+
+    <style>:host{display:inline-block;position:relative;box-sizing:border-box;min-width:5.14em;margin:0 .29em;background:0 0;text-align:center;font:inherit;text-transform:uppercase;outline:0;border-radius:3px;-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;user-select:none;cursor:pointer;z-index:0}:host([disabled]){background:#eaeaea;color:#a8a8a8;cursor:auto;pointer-events:none}::content *{text-transform:inherit}#bg,#shadow{border-radius:inherit}#ripple{pointer-events:none;z-index:-1}.button-content{padding:.7em .57em}polyfill-next-selector{content:'.button-content > a'}::content>a{height:100%;padding:.7em .57em;margin:-.7em -.57em;-ms-flex:1 1 0;-webkit-flex:1;flex:1;-webkit-flex-basis:0;flex-basis:0}</style>
+
+    <template if="{{raised}}">
+      <paper-shadow id="shadow" fit="" animated=""></paper-shadow>
+    </template>
+
+    <!-- this div is needed to position the ripple behind text content -->
+    <div class="button-content" relative="" layout="" horizontal="" center-center="">
+      <content></content>
+    </div>
+
+    <core-a11y-keys keys="space enter" target="{{}}" on-keys-pressed="{{_activate}}"></core-a11y-keys>
+
+  </template>
+
+  <script>Polymer("paper-button",{publish:{raised:false,recenteringTouch:false,fill:true},_activate:function(){this.click();this.fire("tap");if(!this.pressed){var bcr=this.getBoundingClientRect();var x=bcr.left+bcr.width/2;var y=bcr.top+bcr.height/2;this.downAction({x:x,y:y});var fn=function fn(){this.upAction();this.removeEventListener("keyup",fn)}.bind(this);this.addEventListener("keyup",fn)}}});</script>
+</polymer-element>
+
+<script src="../bower_components/video.js/dist/video-js/video.js"></script>
+
+<polymer-element name="video-player" attributes="data" assetpath="video-player/">
+  <template>
+    <style>:host{display:block}#buttons{display:inline-block;float:right;margin-left:-20px}#extControls,#titleBox{position:relative;height:2.8em;width:854px;vertical-align:middle}#extControls{margin-top:10px}#titleBox{background-color:#373737;color:#f3f3f3}#titleBox span{font-size:2.4em;margin-left:10px;top:-5px}#buttons button{height:2.4em}#vp_wrapper{height:510px}paper-button.colored{background:rgba(113,142,165,.85);color:#f7f2f2}paper-button[active].colored{color:#2fff2e;background:rgba(66,133,244,1)}</style>
+    <style>/*!
+Video.js Default Styles (http://videojs.com)
+Version 4.11.4
+Create your own skin at http://designer.videojs.com
+*/.vjs-default-skin{color:#ccc}.vjs-default-skin .vjs-slider{outline:0;position:relative;cursor:pointer;padding:0;background-color:#333;background-color:rgba(51,51,51,.9)}.vjs-default-skin .vjs-slider:focus{box-shadow:0 0 2em #fff}.vjs-default-skin .vjs-slider-handle{position:absolute;left:0;top:0}.vjs-default-skin .vjs-slider-handle:before{content:"\e009";font-family:VideoJS;font-size:1em;line-height:1;text-align:center;text-shadow:0 0 1em #fff;position:absolute;top:0;left:0;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.vjs-default-skin .vjs-control-bar{display:none;position:absolute;bottom:-3em;left:0;right:0;height:3em;background-color:#07141e;background-color:rgba(7,20,30,.7)}.vjs-default-skin.vjs-has-started .vjs-control-bar{display:block;visibility:visible;opacity:1;transition:visibility .1s,opacity .1s}.vjs-default-skin.vjs-controls-disabled .vjs-control-bar,.vjs-default-skin.vjs-error .vjs-control-bar,.vjs-default-skin.vjs-using-native-controls .vjs-control-bar{display:none}.vjs-audio.vjs-default-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar{opacity:1;visibility:visible}@media \0screen{.vjs-default-skin.vjs-user-inactive.vjs-playing .vjs-control-bar :before{content:""}}.vjs-default-skin .vjs-control{outline:0;position:relative;float:left;text-align:center;margin:0;padding:0;height:3em;width:4em}.vjs-default-skin .vjs-control:before{font-family:VideoJS;font-size:1.5em;line-height:2;position:absolute;top:0;left:0;width:100%;height:100%;text-align:center;text-shadow:1px 1px 1px rgba(0,0,0,.5)}.vjs-default-skin .vjs-control:focus:before,.vjs-default-skin .vjs-control:hover:before{text-shadow:0 0 1em #fff}.vjs-default-skin .vjs-control-text{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.vjs-default-skin .vjs-play-control{width:5em;cursor:pointer}.vjs-default-skin .vjs-play-control:before{content:"\e001"}.vjs-default-skin.vjs-playing .vjs-play-control:before{content:"\e002"}.vjs-default-skin .vjs-playback-rate .vjs-playback-rate-value{font-size:1.5em;line-height:2;position:absolute;top:0;left:0;width:100%;height:100%;text-align:center;text-shadow:1px 1px 1px rgba(0,0,0,.5)}.vjs-default-skin .vjs-playback-rate.vjs-menu-button .vjs-menu .vjs-menu-content{width:4em;left:-2em;list-style:none}.vjs-default-skin .vjs-mute-control,.vjs-default-skin .vjs-volume-menu-button{cursor:pointer;float:right}.vjs-default-skin .vjs-mute-control:before,.vjs-default-skin .vjs-volume-menu-button:before{content:"\e006"}.vjs-default-skin .vjs-mute-control.vjs-vol-0:before,.vjs-default-skin .vjs-volume-menu-button.vjs-vol-0:before{content:"\e003"}.vjs-default-skin .vjs-mute-control.vjs-vol-1:before,.vjs-default-skin .vjs-volume-menu-button.vjs-vol-1:before{content:"\e004"}.vjs-default-skin .vjs-mute-control.vjs-vol-2:before,.vjs-default-skin .vjs-volume-menu-button.vjs-vol-2:before{content:"\e005"}.vjs-default-skin .vjs-volume-control{width:5em;float:right}.vjs-default-skin .vjs-volume-bar{width:5em;height:.6em;margin:1.1em auto 0}.vjs-default-skin .vjs-volume-level{position:absolute;top:0;left:0;height:.5em;width:100%;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAP0lEQVQIHWWMAQoAIAgDR/QJ/Ub//04+w7ZICBwcOg5FZi5iBB82AGzixEglJrd4TVK5XUJpskSTEvpdFzX9AB2pGziSQcvAAAAAAElFTkSuQmCC) -50% 0 #66a8cc}.vjs-default-skin .vjs-volume-bar .vjs-volume-handle{width:.5em;height:.5em;left:4.5em}.vjs-default-skin .vjs-volume-handle:before{font-size:.9em;top:-.2em;left:-.2em;width:1em;height:1em}.vjs-default-skin .vjs-volume-menu-button .vjs-menu{display:block;width:0;height:0;border-top-color:transparent}.vjs-default-skin .vjs-volume-menu-button .vjs-menu .vjs-menu-content{height:0;width:0}.vjs-default-skin .vjs-volume-menu-button .vjs-menu.vjs-lock-showing,.vjs-default-skin .vjs-volume-menu-button:hover .vjs-menu{border-top-color:rgba(7,40,50,.5)}.vjs-default-skin .vjs-volume-menu-button .vjs-menu.vjs-lock-showing .vjs-menu-content,.vjs-default-skin .vjs-volume-menu-button:hover .vjs-menu .vjs-menu-content{height:2.9em;width:10em}.vjs-default-skin .vjs-progress-control{position:absolute;left:0;right:0;width:auto;font-size:.3em;height:1em;top:-1em;transition:all .4s}.vjs-default-skin:hover .vjs-progress-control{font-size:.9em;transition:all .2s}.vjs-default-skin .vjs-progress-holder{height:100%}.vjs-default-skin .vjs-progress-holder .vjs-load-progress,.vjs-default-skin .vjs-progress-holder .vjs-load-progress div,.vjs-default-skin .vjs-progress-holder .vjs-play-progress{position:absolute;display:block;height:100%;margin:0;padding:0;width:0;left:0;top:0}.vjs-default-skin .vjs-play-progress{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAP0lEQVQIHWWMAQoAIAgDR/QJ/Ub//04+w7ZICBwcOg5FZi5iBB82AGzixEglJrd4TVK5XUJpskSTEvpdFzX9AB2pGziSQcvAAAAAAElFTkSuQmCC) -50% 0 #66a8cc}.vjs-default-skin .vjs-load-progress{background:#646464;background:rgba(255,255,255,.2)}.vjs-default-skin .vjs-load-progress div{background:#787878;background:rgba(255,255,255,.1)}.vjs-default-skin .vjs-seek-handle{width:1.5em;height:100%}.vjs-default-skin .vjs-seek-handle:before{padding-top:.1em}.vjs-default-skin.vjs-live .vjs-progress-control,.vjs-default-skin.vjs-live .vjs-time-controls,.vjs-default-skin.vjs-live .vjs-time-divider{display:none}.vjs-default-skin.vjs-live .vjs-live-display{display:block}.vjs-default-skin .vjs-live-display{display:none;font-size:1em;line-height:3em}.vjs-default-skin .vjs-time-controls{font-size:1em;line-height:3em}.vjs-default-skin .vjs-current-time,.vjs-default-skin .vjs-duration{float:left}.vjs-default-skin .vjs-remaining-time{display:none;float:left}.vjs-time-divider{float:left;line-height:3em}.vjs-default-skin .vjs-fullscreen-control{width:3.8em;cursor:pointer;float:right}.vjs-default-skin .vjs-fullscreen-control:before{content:"\e000"}.vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control:before{content:"\e00b"}.vjs-default-skin .vjs-big-play-button{left:.5em;top:.5em;font-size:3em;display:block;z-index:2;position:absolute;width:4em;height:2.6em;text-align:center;vertical-align:middle;cursor:pointer;opacity:1;background-color:#07141e;background-color:rgba(7,20,30,.7);border:.1em solid #3b4249;border-radius:.8em;box-shadow:0 0 1em rgba(255,255,255,.25);transition:all .4s}.vjs-default-skin.vjs-big-play-centered .vjs-big-play-button{left:50%;margin-left:-2.1em;top:50%;margin-top:-1.4000000000000001em}.vjs-default-skin.vjs-controls-disabled .vjs-big-play-button,.vjs-default-skin.vjs-has-started .vjs-big-play-button,.vjs-default-skin.vjs-using-native-controls .vjs-big-play-button{display:none}.vjs-default-skin .vjs-big-play-button:focus,.vjs-default-skin:hover .vjs-big-play-button{outline:0;border-color:#fff;background-color:#505050;background-color:rgba(50,50,50,.75);box-shadow:0 0 3em #fff;transition:all 0s}.vjs-default-skin .vjs-big-play-button:before{content:"\e001";font-family:VideoJS;line-height:2.6em;text-shadow:.05em .05em .1em #000;text-align:center;position:absolute;left:0;width:100%;height:100%}.vjs-error .vjs-big-play-button,.vjs-error-display{display:none}.vjs-error .vjs-error-display{display:block;position:absolute;left:0;top:0;width:100%;height:100%}.vjs-error .vjs-error-display:before{content:'X';font-family:Arial;font-size:4em;color:#666;line-height:1;text-shadow:.05em .05em .1em #000;text-align:center;vertical-align:middle;position:absolute;left:0;top:50%;margin-top:-.5em;width:100%}.vjs-error-display div{position:absolute;bottom:1em;right:0;left:0;font-size:1.4em;text-align:center;padding:3px;background:#000;background:rgba(0,0,0,.5)}.vjs-error-display a,.vjs-error-display a:visited{color:#F4A460}.vjs-loading-spinner{display:none;position:absolute;top:50%;left:50%;font-size:4em;line-height:1;width:1em;height:1em;margin-left:-.5em;margin-top:-.5em;opacity:.75}.vjs-seeking .vjs-loading-spinner,.vjs-waiting .vjs-loading-spinner{display:block;-webkit-animation:spin 1.5s infinite linear;animation:spin 1.5s infinite linear}.vjs-error .vjs-loading-spinner{display:none;-webkit-animation:none;animation:none}.vjs-default-skin .vjs-loading-spinner:before{content:"\e01e";font-family:VideoJS;position:absolute;top:0;left:0;width:1em;height:1em;text-align:center;text-shadow:0 0 .1em #000}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}.vjs-default-skin .vjs-menu-button{float:right;cursor:pointer}.vjs-default-skin .vjs-menu{display:none;position:absolute;bottom:0;left:0;width:0;height:0;margin-bottom:3em;border-left:2em solid transparent;border-right:2em solid transparent;border-top:1.55em solid #000;border-top-color:rgba(7,40,50,.5)}.vjs-default-skin .vjs-menu-button .vjs-menu .vjs-menu-content{display:block;padding:0;margin:0;position:absolute;width:10em;bottom:1.5em;max-height:15em;overflow:auto;left:-5em;background-color:#07141e;background-color:rgba(7,20,30,.7);box-shadow:-.2em -.2em .3em rgba(255,255,255,.2)}.vjs-default-skin .vjs-control-content .vjs-menu.vjs-lock-showing,.vjs-default-skin .vjs-menu-button:hover .vjs-control-content .vjs-menu{display:block}.vjs-default-skin .vjs-menu-button ul li{list-style:none;margin:0;padding:.3em 0;line-height:1.4em;font-size:1.2em;text-align:center;text-transform:lowercase}.vjs-default-skin .vjs-menu-button ul li.vjs-selected{background-color:#000}.vjs-default-skin .vjs-menu-button ul li.vjs-selected:focus,.vjs-default-skin .vjs-menu-button ul li.vjs-selected:hover,.vjs-default-skin .vjs-menu-button ul li:focus,.vjs-default-skin .vjs-menu-button ul li:hover{outline:0;color:#111;background-color:#fff;background-color:rgba(255,255,255,.75);box-shadow:0 0 1em #fff}.vjs-default-skin .vjs-menu-button ul li.vjs-menu-title{text-align:center;text-transform:uppercase;font-size:1em;line-height:2em;padding:0;margin:0 0 .3em;font-weight:700;cursor:default}.vjs-default-skin .vjs-subtitles-button:before{content:"\e00c"}.vjs-default-skin .vjs-captions-button:before{content:"\e008"}.vjs-default-skin .vjs-chapters-button:before{content:"\e00c"}.vjs-default-skin .vjs-chapters-button.vjs-menu-button .vjs-menu .vjs-menu-content{width:24em;left:-12em}.vjs-default-skin .vjs-captions-button:focus .vjs-control-content:before,.vjs-default-skin .vjs-captions-button:hover .vjs-control-content:before{box-shadow:0 0 1em #fff}.video-js{background-color:#000;position:relative;padding:0;font-size:10px;vertical-align:middle;font-weight:400;font-style:normal;font-family:Arial,sans-serif;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.video-js .vjs-tech{position:absolute;top:0;left:0;width:100%;height:100%}.video-js:-moz-full-screen{position:absolute}body.vjs-full-window{padding:0;margin:0;height:100%;overflow-y:auto}.video-js.vjs-fullscreen{position:fixed;overflow:hidden;z-index:1000;left:0;top:0;bottom:0;right:0;width:100%!important;height:100%!important}.video-js:-webkit-full-screen{width:100%!important;height:100%!important}.video-js.vjs-fullscreen.vjs-user-inactive{cursor:none}.vjs-poster{background-repeat:no-repeat;background-position:50% 50%;background-size:contain;cursor:pointer;margin:0;padding:0;position:absolute;top:0;right:0;bottom:0;left:0}.vjs-poster img{display:block;margin:0 auto;max-height:100%;padding:0;width:100%}.video-js.vjs-has-started .vjs-poster{display:none}.video-js.vjs-audio.vjs-has-started .vjs-poster{display:block}.video-js.vjs-controls-disabled .vjs-poster,.video-js.vjs-using-native-controls .vjs-poster{display:none}.video-js .vjs-text-track-display{text-align:center;position:absolute;bottom:1em;left:1em;right:1em}.video-js .vjs-text-track{display:none;font-size:2.2em;text-align:center;margin-bottom:.1em;background-color:#000;background-color:rgba(0,0,0,.5)}.video-js .vjs-subtitles{color:#fff}.video-js .vjs-captions{color:#f3f3f3}.vjs-tt-cue{display:block}.video-js.vjs-fullscreen .vjs-text-track{font-size:3em}.vjs-default-skin .vjs-hidden{display:none}.vjs-lock-showing{display:block!important;opacity:1;visibility:visible}.vjs-no-js{padding:20px;color:#ccc;background-color:#333;font-size:18px;font-family:Arial,sans-serif;text-align:center;width:300px;height:150px;margin:0 auto}.vjs-no-js a,.vjs-no-js a:visited{color:#F4A460}</style>
+    <div id="titleBox">
+      <span id="videoTitle">{{data[videoIndex].title}}</span>
+    </div>
+    <div id="vp_wrapper">
+      <video id="vplayer"></video>
+    </div>
+    <div id="extControls">
+      <paper-button id="autoplay" toggle="" class="colored" role="button" on-click="{{ updateAplay }}" active="">Auto Play</paper-button>
+      <div id="buttons">
+        <template if="{{videoIndex &gt; 0}}">
+          <paper-button id="prev" raised="" role="button" on-click="{{ previous }}">Previous</paper-button>
+        </template>
+        <template if="{{videoIndex + 1 &lt; videosLength}}">
+          <paper-button id="next" raised="" role="button" on-click="{{ next }}">Next</paper-button>
+        </template>
+      </div>
+    </div>
+  </template>
+
+  <script>(function(){Polymer("video-player",{ready:function(){this.autoPlay=true},appendEls:function(data){var video=this.shadowRoot.querySelector("video");video.setAttribute("class","video-js vjs-default-skin vjs-big-play-centered");video.setAttribute("width","854");video.setAttribute("height","480");video.setAttribute("poster",data.poster);for(var i=0,len=data.sources.length;i<len;i++){var source=document.createElement("source");source.setAttribute("src",data.sources[i].src);source.setAttribute("type",data.sources[i].type);video.appendChild(source)}if(data.tracks){for(var j=0,l=data.tracks.length;j<l;j++){var track=document.createElement("track");track.setAttribute("kind",data.tracks[j].kind);track.setAttribute("src",data.tracks[j].src);track.setAttribute("srclang",data.tracks[j].srclang);track.setAttribute("label",data.tracks[j].label);if(data.tracks[j].default){track.setAttribute("default","")}video.appendChild(track)}}},resetPlayer:function(){this.player.dispose();delete this.$.player;var v=document.createElement("video");v.setAttribute("id","vplayer");this.shadowRoot.getElementById("vp_wrapper").appendChild(v)},initPlayer:function(options){var videosLength=eval(this.videosLength);var videoIndex=eval(this.videoIndex);var autoPlay=eval(this.autoPlay);console.log("test: "+this.autoPlay);this.player=videojs(this.shadowRoot.querySelector("video"),options,function(){console.log(autoPlay);if(autoPlay){this.play()}if(videoIndex+1<videosLength){this.on("ended",function(){console.log("play next video");document.querySelector("video-player").next()})}})},next:function(){this.videoIndex++;var vIndex=this.videoIndex;this.resetPlayer();this.appendEls(this.data[vIndex]);var options={controls:true,autoplay:this.autoPlay,preload:"auto"};this.initPlayer(options)},previous:function(){this.videoIndex--;var vIndex=this.videoIndex;this.resetPlayer();this.appendEls(this.data[vIndex]);var options={controls:true,autoplay:this.autoPlay,preload:"auto"};this.initPlayer(options)},dataChanged:function(){this.videosLength=this.data.length;this.videoIndex=0;this.appendEls(this.data[this.videoIndex]);var options={controls:true,autoplay:this.autoPlay,preload:"auto"};this.initPlayer(options)},updateAplay:function(e,detail,sender){console.log(e.target.active);this.autoPlay=e.target.active}})})();</script>
+</polymer-element>
+</div>

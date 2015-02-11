@@ -1,0 +1,133 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<script src="../../bower_components/video.js/dist/video-js/video.js"></script>
+
+<polymer-element name="video-player" attributes="data">
+  <template>
+    <link rel="stylesheet" href="video-player.css">
+    <link rel="stylesheet" href="video-js.css">
+    <div id="titleBox">
+      <span id="videoTitle">{{data[videoIndex].title}}</span>
+    </div>
+    <div id="vp_wrapper">
+      <video id="vplayer"></video>
+    </div>
+    <div id="extControls">
+      <paper-button id="autoplay"
+                    toggle class="colored"
+                    role="button" on-click="{{ updateAplay }}"
+                    active>Auto Play</paper-button>
+      <div id="buttons">
+        <template if="{{videoIndex > 0}}">
+          <paper-button id="prev"
+                        raised role="button"
+                        on-click="{{ previous }}" >Previous</paper-button>
+        </template>
+        <template if="{{videoIndex + 1 < videosLength}}">
+          <paper-button id="next"
+                        raised role="button"
+                        on-click="{{ next }}" >Next</paper-button>
+        </template>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function () {
+
+      Polymer({
+        ready: function() {
+          this.autoPlay = true;
+
+        },
+        appendEls: function(data) {
+          var video = this.shadowRoot.querySelector('video');
+          //video.setAttribute("id", "vplayer");
+          video.setAttribute("class", "video-js vjs-default-skin vjs-big-play-centered");
+          video.setAttribute("width", "854");
+          video.setAttribute("height", "480");
+          video.setAttribute("poster", data.poster);
+          //video.setAttribute("data-setup", );
+          //this.$.vplayer.appendChild(video);
+
+          for (var i = 0, len=data.sources.length; i < len; i++){
+            var source = document.createElement("source");
+            source.setAttribute("src", data.sources[i].src);
+            source.setAttribute("type", data.sources[i].type);
+            video.appendChild(source);
+          }
+
+          if (data.tracks) {
+            for (var j = 0, l=data.tracks.length; j < l; j++){
+              var track = document.createElement("track");
+              track.setAttribute("kind", data.tracks[j].kind);
+              track.setAttribute("src", data.tracks[j].src);
+              track.setAttribute("srclang", data.tracks[j].srclang);
+              track.setAttribute("label", data.tracks[j].label);
+              if(data.tracks[j].default) {
+                track.setAttribute("default", '');
+              }
+              video.appendChild(track);
+            }
+          }
+        },
+        resetPlayer: function() {
+          this.player.dispose();
+          delete this.$.player;
+          var v = document.createElement("video");
+          v.setAttribute("id", "vplayer");
+          this.shadowRoot.getElementById("vp_wrapper").appendChild(v);
+        },
+        initPlayer: function(options) {
+          var videosLength = eval(this.videosLength);
+          var videoIndex = eval(this.videoIndex);
+          var autoPlay = eval(this.autoPlay);
+          console.log("test: " + this.autoPlay);
+          this.player = videojs(this.shadowRoot.querySelector('video'), options, function(){
+            console.log(autoPlay);
+            if (autoPlay){
+              this.play();
+            }
+            if (videoIndex + 1 < videosLength) {
+              this.on('ended', function() {
+                  console.log("play next video");
+                  document.querySelector('video-player').next();
+              });
+            }
+          });
+        },
+        next: function() {
+          this.videoIndex++;
+          var vIndex = this.videoIndex;
+          this.resetPlayer();
+          this.appendEls(this.data[vIndex]);
+          var options = {controls: true, autoplay: this.autoPlay, preload: "auto"};
+          this.initPlayer(options);
+          //this.videoIndex = this.videoIndex++;
+        },
+        previous: function() {
+          this.videoIndex--;
+          var vIndex = this.videoIndex;
+          this.resetPlayer();
+          this.appendEls(this.data[vIndex]);
+          var options = {controls: true, autoplay: this.autoPlay, preload: "auto"};
+          this.initPlayer(options);
+        },
+        dataChanged: function(){
+          this.videosLength = this.data.length;
+          this.videoIndex = 0;
+          this.appendEls(this.data[this.videoIndex]);
+          var options = {controls: true, autoplay: this.autoPlay, preload: "auto"};
+          this.initPlayer(options);
+        },
+        updateAplay: function(e, detail, sender) {
+          console.log(e.target.active);
+          this.autoPlay = e.target.active;
+        }
+
+
+      });
+
+    })();
+  </script>
+</polymer-element>
