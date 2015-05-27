@@ -17,6 +17,16 @@
                     toggle class="colored"
                     role="button" on-click="{{ updateAplay }}"
                     active>Auto Play</paper-button>
+      <div id="videoSizeSeletors">
+        <paper-button id="480p"
+                      toggle class="colored"
+                      role="button" on-click="{{ updateQuality }}"
+                      active>480p</paper-button>
+        <paper-button id="240p"
+                      toggle class="colored"
+                      role="button"
+                      on-click="{{ updateQuality }}">240p</paper-button>
+      </div>
       <div id="buttons">
         <template if="{{videoIndex > 0}}">
           <paper-button id="prev"
@@ -38,6 +48,7 @@
       Polymer({
         ready: function() {
           this.autoPlay = true;
+          this.videoQuality = "480p";
 
         },
         appendEls: function(data) {
@@ -51,8 +62,11 @@
           //this.$.vplayer.appendChild(video);
 
           for (var i = 0, len=data.sources.length; i < len; i++){
+            var src = data.sources[i].src;
+            var srcQuality = src.slice(0, -4) + "_" + this.videoQuality + ".mp4";
+
             var source = document.createElement("source");
-            source.setAttribute("src", data.sources[i].src);
+            source.setAttribute("src", srcQuality);
             source.setAttribute("type", data.sources[i].type);
             video.appendChild(source);
           }
@@ -123,8 +137,27 @@
         updateAplay: function(e, detail, sender) {
           console.log(e.target.active);
           this.autoPlay = e.target.active;
-        }
+        },
+        updateQuality: function(e, details, sender) {
+          var videoQuality = sender.id;
+          var vIndex = this.videoIndex;
 
+          var button = null;
+          if (videoQuality == "480p") {
+            button = this.shadowRoot.getElementById('240p');
+            button.removeAttribute("active");
+          }
+          else {
+            var button = this.shadowRoot.getElementById('480p');
+            button.removeAttribute("active");
+          }
+
+          this.videoQuality = videoQuality;
+          this.resetPlayer();
+          this.appendEls(this.data[vIndex]);
+          var options = {controls: true, autoplay: this.autoPlay, preload: "auto"};
+          this.initPlayer(options);
+        }
 
       });
 
